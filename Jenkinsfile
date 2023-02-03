@@ -1,10 +1,10 @@
 pipeline {
-    agent { docker { image 'python:3.10.7-alpine' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-        }
+  agent any 
+  stages {
+    stage('Verify version') {
+      steps {
+        sh 'docker run --rm flyway/flyway:8.5.1 version'
+      }
     }
+  }
 }
